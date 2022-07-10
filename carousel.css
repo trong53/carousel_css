@@ -1,0 +1,105 @@
+ 
+ .container {
+    width: 72%;
+    height: 60%;
+    margin: 0 auto;
+    padding: 30px 15px;
+ }
+ .carousel {
+    position: relative; /* important vi neu khong image se vuot ra ngoai vi no absolute va so voi écran man hinh 
+                    Gia la relative de no so voi parent la . container, neu de absolute thi no se so voi ecran man hinh*/
+    width: 100%;
+    padding-top: 56%; /* important vi day se la vung chua image, 56% so voi width cua parent */
+    background-color: lightgray;
+    display: block;
+    overflow-x: hidden;
+    text-align: center;
+    word-spacing: 12px;
+ }
+
+ .carousel-image {
+    width: 100%;
+    height : 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index : 1;
+    top: 0;
+    left: 0;
+    display : none;
+    transition: all 0.9s;
+    left: -100%;
+ }
+
+ .carousel-indicator:checked ~ .carousel-image {
+    display: inline-block;
+    left: 100%;
+ }
+ .carousel-indicator:checked + .carousel-image {  /* important phai dat sau checked phia tren de hien thi, neu ko thi tat ca se sang phai */
+    display: inline-block;
+    left: 0;
+ }
+
+ .carousel-indicator {
+    position: relative; /*phai la relative de cac button lien tuc, neu de absolute thi no se so sanh voi cac image */
+    bottom : 10px;
+    z-index : 2;
+    cursor: pointer;
+    transform: scale(1.5);  /*tang kich thuoc cua nut radio - input */
+ }
+ 
+ .carousel-button {
+    background-color: whitesmoke;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+ }
+
+ .carousel-button::before {  /* them noi dung content vao truoc noi dung class caroussel-button, no la "" thi noi dung se la content+""  */
+    content: "<";
+    line-height: 42px;
+ }
+ 
+ .carousel-indicator:checked ~ .carousel-button::before {  /*them content"" vao cac caroussel-button dung sau checked */
+    content: ">";
+    line-height: 42px;
+ }
+ 
+ .carousel-indicator:checked + .carousel-image + .carousel-button::before {   /*them content"" vao caroussel-button dung NGAY SAU checked */
+    content: "o";
+    line-height: 42px;
+ }
+
+ .carousel-button {   /* bthuong tat ca button hien thi ben trai, chong len nhau */
+    position: absolute;
+    z-index: 2;
+    bottom: 12px;
+    left: 9px;
+    right: auto;
+ }
+ 
+ .carousel-indicator:checked ~ .carousel-button {  /*khi sang image thu 2 tro di, nhung button phai sau checked se sang phai */
+    left: auto;
+    right: 9px;
+ }
+ 
+ .carousel-indicator:checked + .carousel-image + .carousel-button {  /*button cua checked se ko hien thi */
+    display: none;
+ }
+
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(1)  { z-index: 2; }
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(2)  { z-index: 3; }
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(3)  { z-index: 4; }
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(4)  { z-index: 5; }
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(5)  { z-index: 6; }
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(6)  { z-index: 7; }
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(7)  { z-index: 8; }
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(8)  { z-index: 9; }
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(9)  { z-index: 10;}
+.carousel-indicator:checked ~ .carousel-button:nth-last-of-type(10) { z-index: 11;}
+
+/*Ở đây chúng ta có thể nghĩ đến cách xử lý giống với khi xây dựng 
+thanh điều hướng responsive bằng cách sử dụng các thẻ <label> làm nút nhấn 
+và kết nối tới các radio-button bằng các cặp for/id.*/
